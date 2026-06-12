@@ -34,7 +34,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 Step 1: Create an Azure Virtual Machine
   
-Create a Windows 10 Virtual Machine in Microsoft Azure.
+A. Create a Windows 10 Virtual Machine in Microsoft Azure.
 
 - Resource Group: osTicket
 - Virtual Machine Name: osticket-vm
@@ -47,7 +47,7 @@ Create a Windows 10 Virtual Machine in Microsoft Azure.
 </p>
 <p>
 
-After deployment, connect to the VM using Remote Desktop Protocol (RDP).
+B. After deployment, connect to the VM using Remote Desktop Protocol (RDP).
 
 <p>
 <img width="931" height="756" alt="RDP to virtual machine" src="https://github.com/user-attachments/assets/d3bfa779-47a7-427a-a90a-7dddcf3d0bd8" />
@@ -104,15 +104,14 @@ These files include:
 
 
 Step 4: Install PHP Manager and URL Rewrite
-Install:
 
-1. PHP Manager for IIS
+A. PHP Manager for IIS
 <p>
 <img width="861" height="682" alt="php manager installed" src="https://github.com/user-attachments/assets/a31e1773-ea2a-4368-88e1-24ffdecf74c4" />
 </p>
 <p>
 
-2. URL Rewrite Module
+B. URL Rewrite Module
 <p>
 <img width="885" height="700" alt="rewrite installed" src="https://github.com/user-attachments/assets/f54f6307-2c94-4a61-9165-835caff97953" />
 </p>
@@ -124,11 +123,11 @@ These components allow IIS to properly run PHP applications such as osTicket.
 
 Step 5 - Extract php binaries
 
-Create the directory C:\PHP
+A. Create the directory C:\PHP
 
 Go to file explorer -> c: drive -> create folder PHP 
 
-From the “osTicket-Installation-Files” folder, unzip PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) into the “C:\PHP” folder
+B. From the “osTicket-Installation-Files” folder, unzip PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) into the “C:\PHP” folder
 
 <p>
 <img width="878" height="669" alt="extract php binaries" src="https://github.com/user-attachments/assets/d751ec31-0e35-4418-86fc-2323a6ff87e6" />
@@ -137,10 +136,7 @@ From the “osTicket-Installation-Files” folder, unzip PHP 7.3.8 (php-7.3.8-nt
 </p>
 <br />
 
-
 Step 6: From the “osTicket-Installation-Files” folder, install VC_redist.x86.exe.
-  
-Install the Microsoft Visual C++ Redistributable package.
 
 <p>
 <img width="872" height="663" alt="visual c installed" src="https://github.com/user-attachments/assets/b588daf9-dc51-4070-a1e5-07a94711cd5e" />
@@ -151,25 +147,30 @@ This provides required runtime libraries for PHP and other dependencies.
 </p>
 <br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
 Step 7: Install PHP
-Extract PHP to:
 
-C:\PHP
-
-Open IIS Manager.
-
-Using PHP Manager:
-
-- Register PHP
-- Verify PHP is recognized by IIS
+A. Open IIS Manager (open IIS as an Admin)
+ <p>
+<img width="870" height="652" alt="php manager admin" src="https://github.com/user-attachments/assets/91e4dd43-8049-447f-9201-7e66ecbf6d67" />
 </p>
-<br />
+<p>
 
-Step 8: From the “osTicket-Installation-Files” folder, install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+B. Using PHP Manager:
+
+- Register PHP (we're making the server aware of the existence of PHP the computer and tell it where it is ):
+  double click php manager -> register new php -> click three dots -> find php-cgi in C:PHP
+ <p>
+<img width="876" height="657" alt="php-cgi" src="https://github.com/user-attachments/assets/7d538cb8-f950-4ba1-a72e-da79768944bc" />
+</p>
+<p>
+
+C. Verify PHP is recognized by IIS: Reload IIS (Open IIS, Stop and Start the server) … click on osticket-vm (osticket) , right click stop , right click start
+ <p>
+<img width="876" height="448" alt="reload server" src="https://github.com/user-attachments/assets/b5e71418-3fd9-46c6-a1e1-ea8c8446bbdf" />
+</p>
+<p>
+
+Step 8: From the “osTicket-Installation-Files” folder, install mysql-5.5.62-win32.msi
   
 During installation:
 
@@ -187,145 +188,123 @@ Verify MySQL service is running after installation.
 </p>
 <br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Step 8: Install HeidiSQL
-Install HeidiSQL.
+Step 9: Install osTicket v1.15.8
+  
+A. From the “osTicket-Installation-Files” folder, unzip “osTicket-v1.15.8.zip” to the same folder  
 
-Connect to MySQL using:
-
-- Server: localhost
-- Username: root
-- Password: (your password)
-
-Verify successful database connection.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Step 9: Install osTicket
-Extract osTicket files.
-
-Copy the upload folder contents to:
+B. Copy the upload folder contents to:
 
 C:\inetpub\wwwroot\osTicket
 
-Rename:
-
+C. Rename:
 upload → osTicket
 
-Restart IIS.
+<p>
+<img width="899" height="695" alt="upload to osTicket" src="https://github.com/user-attachments/assets/90232a39-536e-4ecb-9b2f-95fc3b840e88" />
+</p>
+<p>
+
+D. Restart IIS.
+
+<p>
+<img width="876" height="448" alt="reload server" src="https://github.com/user-attachments/assets/b5e71418-3fd9-46c6-a1e1-ea8c8446bbdf" />
+</p>
+<p>
+
+E. Go to sites -> Default -> osTicket
+On the far right, click “Browse *:80”
+
+<p>
+<img width="950" height="761" alt="loading osTicket" src="https://github.com/user-attachments/assets/67ba264d-f527-4d3b-a94f-7740a29f5903" />
+</p>
+<p>
+
+Note that some extensions are not enabled
+
+F. Go back to IIS, sites -> Default -> osTicket -> Double-click PHP Manager -> Click “Enable or disable an extension”
+
+Enable: php_imap.dll -> Enable: php_intl.dll -> Enable: php_opcache.dll
+
+G. Refresh the osTicket site in your browser, observe the changes
+
+<p>
+<img width="950" height="764" alt="osTicket enabled" src="https://github.com/user-attachments/assets/339f83b0-9034-4345-a29d-15a7556e2bfd" />
+</p>
+<p>
+  
 </p>
 <br />
 
+Step 10: Rename: ost-config.php
+
+A. From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
+To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
+
+B. Assign Permissions: ost-config.php (right click -> properties -> security -> advanced )
+
+Disable inheritance -> Remove All
+
+Add New Permissions -> select principal -> type Everyone -> check names -> All (full control etc) apply - ok
+
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="1421" height="736" alt="assign permissions" src="https://github.com/user-attachments/assets/3b413eb2-4f4a-46b4-b6f2-03e47038a776" />
 </p>
 <p>
-Step 10: Configure IIS for osTicket
-Open IIS Manager.
 
-Navigate to:
+Now OSticket has full control of the configuration file
 
-Sites → Default Web Site → osTicket
+C. Continue Setting up osTicket in the browser (click Continue)
 
-Enable:
+Name Helpdesk
 
-- PHP Manager
-- Required PHP Extensions
+Default email (your email)
 
-Refresh the website and verify osTicket setup page loads.
-</p>
-<br />
+Admin user: email address different from default
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="803" height="933" alt="osticket continue set up" src="https://github.com/user-attachments/assets/f21f5c4d-1e60-47e3-9ade-4dcb4d05a632" />
 </p>
 <p>
-Step 11: Configure osTicket File Permissions
-Rename:
-
-ost-sampleconfig.php
-
-to
-
-ost-config.php
-
-Modify Security Permissions:
-
-- Disable inheritance
-- Remove unnecessary users
-- Grant Full Control to Everyone temporarily
 </p>
 <br />
 
+Step 11: From the “osTicket-Installation-Files” folder, install HeidiSQL. (to make a connection to our database)
+
+A. Install HeidiSQL and launch 
+
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="693" height="543" alt="heidi installed" src="https://github.com/user-attachments/assets/8a82ab0d-40da-4d67-90d3-fe910335ef48" />
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
 
+B. Connect to MySQL using:
+
+- Create a new session, root/ROOT
+- Connect to the session
+  
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Step 12: Create osTicket Database
-Open HeidiSQL.
-
-Create a new database named:
-
-osTicket
-
-This database will store tickets, users, departments, and configuration settings.
-</p>
-<br />
-
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="791" height="602" alt="root ROOT" src="https://github.com/user-attachments/assets/f091fec1-5e10-4247-8521-dd6cc914964e" />
 </p>
 <p>
-Step 13: Complete Web Installation
-Browse to:
 
-http://localhost/osTicket
-
-Enter:
-
-- Helpdesk Name
-- Default Email
-- Admin Username
-- Admin Password
-
-Database Settings:
-
-- MySQL Database: osTicket
-- Username: root
-- Password: your password
-
-Click Install Now.
-</p>
-<br />
+C. Create a database called “osTicket” (right click unamed -> create new -> database-> osTicket) you’ll see that it was created but thre is nothing in it
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="936" height="593" alt="osTicket database" src="https://github.com/user-attachments/assets/82c027e3-cc4f-45cb-b605-cada9e4e2266" />
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+
+D. Verify successful database connection / finish setting up OS Ticket page 
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="648" height="460" alt="osTicket finish set up" src="https://github.com/user-attachments/assets/e599a27f-a1be-4018-8f62-60150127d484" />
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+<p>
+<img width="806" height="646" alt="osTicket completed" src="https://github.com/user-attachments/assets/594e7c1a-085e-40e8-82c7-5b502f8f56d3" />
+</p>
+<p>
+
 </p>
 <br />
