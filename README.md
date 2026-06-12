@@ -308,3 +308,16 @@ D. Verify successful database connection / finish setting up OS Ticket page
 
 </p>
 <br />
+
+<h2>Skills Demonstrated</h2>
+
+- Cloud Computing (Microsoft Azure)
+- Virtual Machine Deployment
+- Remote Desktop Administration
+- Windows Server Concepts
+- IIS Web Server Configuration
+- PHP Configuration
+- MySQL Database Management
+- Application Installation and Troubleshooting
+- User Permission Management
+- Help Desk Ticketing Systems
